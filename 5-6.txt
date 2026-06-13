@@ -1,0 +1,541 @@
+For your GitHub repo and DevOps practical exams, keep this **short exam-ready Jenkins Installation Notes**. Based on your lab manual. 
+
+# Jenkins Installation (Windows)
+
+## Prerequisites
+
+* Install Java JDK 21 or above
+* Verify Java:
+
+```cmd
+java -version
+javac -version
+```
+
+---
+
+## Step 1: Download Jenkins
+
+Download Jenkins MSI from:
+
+[https://www.jenkins.io/download/](https://www.jenkins.io/download/)
+
+Select:
+
+* Windows
+* MSI Installer
+
+---
+
+## Step 2: Install Jenkins
+
+1. Run `jenkins.msi`
+2. Click **Next**
+3. Select Installation Folder
+4. Click **Next**
+5. Select:
+
+```text
+Run Service as LocalSystem
+```
+
+6. Click **Next**
+
+---
+
+## Step 3: Configure Port
+
+Enter:
+
+```text
+8081
+```
+
+Click **Test Port**
+
+If successful:
+
+```text
+Next
+```
+
+---
+
+## Step 4: Install Java JDK (If Required)
+
+Download:
+
+[https://www.oracle.com/java/technologies/downloads/](https://www.oracle.com/java/technologies/downloads/)
+
+Install JDK 21
+
+Default path:
+
+```text
+C:\Program Files\Java\jdk-21
+```
+
+---
+
+## Step 5: Configure Java Path
+
+When Jenkins asks for Java Home:
+
+Select:
+
+```text
+C:\Program Files\Java\jdk-21
+```
+
+Click:
+
+```text
+OK
+Next
+```
+
+---
+
+## Step 6: Finish Jenkins Installation
+
+Click:
+
+```text
+Install
+```
+
+After installation:
+
+```text
+Finish
+```
+
+---
+
+# Unlock Jenkins
+
+Open browser:
+
+```text
+http://localhost:8081
+```
+
+Jenkins asks for Administrator Password.
+
+Open Run:
+
+```text
+Win + R
+```
+
+Execute:
+
+```cmd
+notepad.exe C:\ProgramData\Jenkins\.jenkins\secrets\initialAdminPassword
+```
+
+Copy password.
+
+Paste in Jenkins.
+
+Click:
+
+```text
+Continue
+```
+
+---
+
+# Install Plugins
+
+Click:
+
+```text
+Install Suggested Plugins
+```
+
+Wait for installation.
+
+---
+
+# Create Admin User
+
+Example:
+
+```text
+Username : admin
+Password : admin
+Confirm Password : admin
+Email : admin@local.com
+```
+
+Click:
+
+```text
+Save and Continue
+```
+
+---
+
+# Jenkins URL
+
+Keep default:
+
+```text
+http://localhost:8081/
+```
+
+Click:
+
+```text
+Save and Finish
+```
+
+---
+
+# Start Jenkins
+
+Click:
+
+```text
+Start using Jenkins
+```
+
+---
+
+# Install SonarQube Scanner Plugin
+
+Dashboard →
+
+```text
+Manage Jenkins
+```
+
+↓
+
+```text
+Plugins
+```
+
+↓
+
+```text
+Available Plugins
+```
+
+Search:
+
+```text
+SonarQube Scanner
+```
+
+Install plugin.
+
+Restart Jenkins.
+
+Login again:
+
+```text
+Username : admin
+Password : admin
+```
+
+---
+
+Continuing from your PDF after **Jenkins + SonarQube Scanner Plugin installation**: 
+
+# SonarQube Server Installation
+
+### 1. Download SonarQube
+
+Download SonarQube Community Edition ZIP. 
+
+### 2. Extract ZIP
+
+Example:
+
+```text
+C:\sonarqube
+```
+
+### 3. Start SonarQube
+
+Go to:
+
+```text
+sonarqube-<version>\bin\windows-x86-64
+```
+
+Run:
+
+```text
+StartSonar.bat
+```
+
+If Windows warns:
+
+```text
+More Info
+→ Run Anyway
+→ Allow Access
+```
+
+
+
+### 4. Open SonarQube
+
+```text
+http://localhost:9000
+```
+
+Default login:
+
+```text
+Username: admin
+Password: admin
+```
+
+
+
+---
+
+# Generate SonarQube Token
+
+### Administration
+
+```text
+Administration
+→ Security
+→ Users
+→ Tokens
+```
+
+Generate a token and copy it.
+
+---
+
+# Configure SonarQube in Jenkins
+
+### Add Credentials
+
+```text
+Manage Jenkins
+→ Credentials
+→ Global Credentials
+→ Add Credentials
+```
+
+Choose:
+
+```text
+Kind: Secret Text
+```
+
+Paste SonarQube token.
+
+ID:
+
+```text
+sonar
+```
+
+Save.
+
+---
+
+### Configure SonarQube Server
+
+```text
+Manage Jenkins
+→ System
+→ SonarQube Servers
+```
+
+Add:
+
+```text
+Name: sonar
+Server URL: http://localhost:9000
+Credentials: sonar
+```
+
+Save.
+
+---
+
+# Program 5: Jenkins CI/CD Pipeline with SonarQube
+
+### Create Pipeline
+
+```text
+Dashboard
+→ New Item
+→ Pipeline
+```
+
+Name:
+
+```text
+SonarPipeline
+```
+
+### Pipeline Script
+
+```groovy
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/USERNAME/REPOSITORY.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'mvn clean install'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                bat 'mvn sonar:sonar'
+            }
+        }
+    }
+}
+```
+
+(Basic version suitable for lab exams.)
+
+### Run
+
+```text
+Build Now
+```
+
+Check:
+
+```text
+Console Output
+```
+
+Expected:
+
+```text
+Build Successful
+SonarQube Analysis Completed
+```
+
+---
+
+# Program 6: Build Pipeline Using Maven
+
+### Create Pipeline Job
+
+```text
+Dashboard
+→ New Item
+→ Pipeline
+```
+
+### Configure Maven
+
+```text
+Manage Jenkins
+→ Tools
+→ Maven Installations
+```
+
+Add Maven.
+
+### Pipeline Code
+
+```groovy
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Compile') {
+            steps {
+                bat 'mvn compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                bat 'mvn package'
+            }
+        }
+
+    }
+}
+```
+
+### Run Pipeline
+
+```text
+Build Now
+```
+
+Expected:
+
+```text
+Compile SUCCESS
+Test SUCCESS
+Package SUCCESS
+BUILD SUCCESS
+```
+
+# Viva Questions
+
+1. What is Jenkins?
+
+   * Open-source CI/CD automation tool.
+
+2. What is SonarQube?
+
+   * Static code analysis tool.
+
+3. Default SonarQube port?
+
+   * `9000`
+
+4. Default Jenkins port?
+
+   * `8081` (as configured in your lab).
+
+5. Command to start SonarQube?
+
+```text
+StartSonar.bat
+```
+
+6. Maven build command?
+
+```cmd
+mvn clean install
+```
+
+7. Jenkins admin credentials used in lab?
+
+```text
+Username: admin
+Password: admin
+```
+
+This covers the full flow typically asked in the DevOps Program 5 & 6 practical exam.
+
+
+
+
+
