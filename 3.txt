@@ -30,7 +30,8 @@ docker images
 #
 docker ps -a
 
-
+mkdir testingdocker
+cd testingdocker
 
 
 #
