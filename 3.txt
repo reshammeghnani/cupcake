@@ -1,0 +1,65 @@
+docker --version
+docker info
+
+docker ps
+docker ps -a
+
+docker images
+
+docker pull ubuntu
+
+docker run -it ubuntu
+
+docker stop <container_id>
+
+docker rm <container_id>
+
+
+
+
+
+#
+docker pull ubuntu
+docker run -it ubuntu
+exit
+
+#
+
+docker images
+
+#
+docker ps -a
+
+
+
+
+#
+app.py
+
+from flask import Flask
+app = Flask(__name__)
+@app.route('/')
+def hello_world():
+    return 'Hello, Docker!'
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+#
+Dockerfile
+
+FROM python:3.8-slim
+WORKDIR /app
+COPY app.py .
+RUN pip install flask
+EXPOSE 5000
+CMD ["python", "app.py"]
+
+#
+docker build -t python-flask-app .
+
+#
+docker run -p 5000:5000 python-flask-app
+
+
+#verify
+http://localhost:5000
