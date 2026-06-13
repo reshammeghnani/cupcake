@@ -1,0 +1,14 @@
+1. GitHub – Create an account and fork your application code
+2. To perform version control on websites or software using Git by managing repositories
+through a browser-based interface and synchronizing changes with push and pull
+commands from the command line and GUI.
+3. Install Docker, explore its containerization commands, create Docker containers using various
+operating system images, and deploy containerized applications using Docker and Docker Hub.
+4. Design, deploy, and manage a micro services architecture on your local machine using Docker
+and Docker-compose
+5. Install Jenkins on local or cloud environment, and configure Jenkins for first use.
+6. Install and configure SonarQube on your local machine and create a Jenkins CI/CD pipeline that
+integrates SonarQube to perform static code analysis.
+7. Demonstrate the fundamentals of Maven and Gradle, and perform their installation and setup
+8. Create a Maven project, understanding the POM File, dependency management and plugins.
+9. Build and run a Java application with maven, migrate the same application to Gradle.
