@@ -1,0 +1,31 @@
+java -version
+javac -version
+
+setx MAVEN_HOME "C:\Program Files\Apache\Maven\apache-maven-3.9.6" /M
+setx PATH "%PATH%;C:\Program Files\Apache\Maven\apache-maven-3.9.6\bin" /M
+
+mvn -v
+
+mvn archetype:generate -DgroupId=com.example -DartifactId=demo-project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+cd demo-project
+
+notepad pom.xml
+
+#############################################
+inside dependencies
+
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.10.1</version>
+</dependency>
+
+##########################################
+
+
+mvn compile
+mvn test
+mvn package
+
+java -cp target\demo-project-1.0-SNAPSHOT.jar com.example.App
