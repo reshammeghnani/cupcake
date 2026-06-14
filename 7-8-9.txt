@@ -160,3 +160,66 @@ gradle build
 gradle run
 
 
+
+
+
+
+
+
+
+
+
+
+Procedure
+Part A: Build and Run Java Application Using Maven
+Step 1: Create a Maven Project
+mvn archetype:generate -DgroupId=com.example -DartifactId=final-demo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+Step 2: Move to Project Directory
+cd final-demo
+Step 3: Modify App.java
+package com.example;
+
+public class App {
+    public static void main(String[] args) {
+        System.out.println("Hello From MAVEN !!");
+    }
+}
+Step 4: Compile the Project
+mvn compile
+Step 5: Package the Project
+mvn package
+Step 6: Run the Application
+java -cp target\final-demo-1.0-SNAPSHOT.jar com.example.App
+Output
+Hello From MAVEN !!
+Part B: Migrate the Same Application to Gradle
+Step 1: Remove Maven Configuration
+del pom.xml
+Step 2: Create build.gradle
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+Step 3: Create settings.gradle
+rootProject.name = 'final-demo'
+Step 4: Modify App.java
+package com.example;
+
+public class App {
+    public static void main(String[] args) {
+        System.out.println("Hello From Gradle!!");
+    }
+}
+Step 5: Set Java Environment
+set JAVA_HOME=C:\Program Files\Java\jdk-21.0.11
+set PATH=%JAVA_HOME%\bin;%PATH%
+Step 6: Build the Project
+gradle build
+Step 7: Run the Application
+java -cp build\classes\java\main com.example.App
+Output
+Hello From Gradle!!
+
