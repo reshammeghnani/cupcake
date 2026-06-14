@@ -1,10 +1,10 @@
 cd C:\
 
-rename demo-project demo-project-old
+rename ok-demo ok-demo-old
 
-mvn archetype:generate -DgroupId=com.example -DartifactId=demo-project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+mvn archetype:generate -DgroupId=com.example -DartifactId=ok-demo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
-cd demo-project
+cd ok-demo
 
 dir
 
@@ -28,7 +28,7 @@ mvn compile
 
 mvn package
 
-java -cp target\demo-project-1.0-SNAPSHOT.jar com.example.App
+java -cp target\ok-demo-1.0-SNAPSHOT.jar com.example.App
 
 
 
@@ -42,7 +42,7 @@ echo repositories { >> build.gradle
 echo     mavenCentral() >> build.gradle
 echo } >> build.gradle
 
-echo rootProject.name = 'demo-project' > settings.gradle
+echo rootProject.name = 'ok-demo' > settings.gradle
 
 
 
@@ -75,7 +75,7 @@ set PATH=%JAVA_HOME%\bin;%PATH%
 
 java -version
 
-cd C:\demo-project
+cd C:\ok-demo
 
 rmdir /s /q src\test
 
