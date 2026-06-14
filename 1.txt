@@ -1,7 +1,7 @@
 git clone https://github.com/reshammeghnani/testingrepo.git
 cd testingrepo
 git status
-echo "Hello Git" > file.txt
+echo "Hello Git git" > file.txt
 git add .
 git commit -m "Initial commit"
 git push origin main
