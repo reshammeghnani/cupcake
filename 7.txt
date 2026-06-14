@@ -1,0 +1,10 @@
+java -version
+javac -version
+
+mvn -v
+
+gradle -v
+
+cd C:\demo-project
+
+gradle build
