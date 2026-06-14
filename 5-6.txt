@@ -538,4 +538,49 @@ This covers the full flow typically asked in the DevOps Program 5 & 6 practical 
 
 
 
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Create Java File') {
+            steps {
+                writeFile file: 'Test.java', text: '''
+public class Test {
+    public static void main(String[] args) {
+        System.out.println("Hello SonarQube");
+    }
+}
+'''
+            }
+        }
+
+        stage('Verify File') {
+            steps {
+                bat 'dir'
+                bat 'type Test.java'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarScanner'
+
+                    withSonarQubeEnv('Sonarnew') {
+                        bat """
+                        "${scannerHome}\\bin\\sonar-scanner.bat" ^
+                        -Dsonar.projectKey=SonarDemo ^
+                        -Dsonar.projectName=SonarDemo ^
+                        -Dsonar.sources=. ^
+                        -Dsonar.inclusions=**/*.java
+                        """
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
