@@ -6,9 +6,9 @@ setx PATH "%PATH%;C:\Program Files\Apache\Maven\apache-maven-3.9.6\bin" /M
 
 mvn -v
 
-mvn archetype:generate -DgroupId=com.example -DartifactId=demo-project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+mvn archetype:generate -DgroupId=com.example -DartifactId=demo-proj -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
-cd demo-project
+cd demo-proj
 
 notepad pom.xml
 
