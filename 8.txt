@@ -28,4 +28,4 @@ mvn compile
 mvn test
 mvn package
 
-java -cp target\demo-project-1.0-SNAPSHOT.jar com.example.App
+java -cp target\demo-proj-1.0-SNAPSHOT.jar com.example.App
