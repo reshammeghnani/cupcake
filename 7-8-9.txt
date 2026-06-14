@@ -85,3 +85,78 @@ java -cp build\classes\java\main com.example.App
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cd C:\
+
+mvn archetype:generate -DgroupId=com.example -DartifactId=final-demo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+cd final-demo
+
+echo package com.example;> src\main\java\com\example\App.java
+echo public class App {>> src\main\java\com\example\App.java
+echo     public static void main(String[] args) {>> src\main\java\com\example\App.java
+echo         System.out.println("Hello From MAVEN !!");>> src\main\java\com\example\App.java
+echo     }>> src\main\java\com\example\App.java
+echo }>> src\main\java\com\example\App.java
+
+mvn compile
+mvn package
+
+java -cp target\final-demo-1.0-SNAPSHOT.jar com.example.App
+
+del pom.xml
+
+echo plugins { > build.gradle
+echo     id 'java' >> build.gradle
+echo     id 'application' >> build.gradle
+echo } >> build.gradle
+echo. >> build.gradle
+echo repositories { >> build.gradle
+echo     mavenCentral() >> build.gradle
+echo } >> build.gradle
+echo. >> build.gradle
+echo application { >> build.gradle
+echo     mainClass = 'com.example.App' >> build.gradle
+echo } >> build.gradle
+
+echo rootProject.name = 'final-demo' > settings.gradle
+
+echo package com.example;> src\main\java\com\example\App.java
+echo public class App {>> src\main\java\com\example\App.java
+echo     public static void main(String[] args) {>> src\main\java\com\example\App.java
+echo         System.out.println("Hello From Gradle!!");>> src\main\java\com\example\App.java
+echo     }>> src\main\java\com\example\App.java
+echo }>> src\main\java\com\example\App.java
+
+set JAVA_HOME=C:\Program Files\Java\jdk-21.0.11
+set PATH=%JAVA_HOME%\bin;%PATH%
+
+java -version
+
+rmdir /s /q src\test
+
+gradle clean
+gradle build
+gradle run
+
+
