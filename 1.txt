@@ -1,3 +1,5 @@
+git config --global user.name "reshammeghnani"
+git config --global user.email "reshammeghnani4321@gmail.com"
 git clone https://github.com/reshammeghnani/testingrepo.git
 cd testingrepo
 git status
