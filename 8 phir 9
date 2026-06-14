@@ -143,9 +143,9 @@ echo.
 
 echo java ^{
 
-echo     sourceCompatibility = JavaVersion.VERSION_25 
+echo     sourceCompatibility = JavaVersion.VERSION_21
 
-echo     targetCompatibility = JavaVersion.VERSION_25
+echo     targetCompatibility = JavaVersion.VERSION_21
 
 echo ^}
 
