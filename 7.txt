@@ -8,3 +8,39 @@ gradle -v
 cd C:\demo-project
 
 gradle build
+
+
+
+
+
+
+
+
+
+java -version
+javac -version
+mvn -version
+mvn archetype:generate -DgroupId=com.example -DartifactId=MavenDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+cd MavenDemo
+mvn compile
+mvn package
+
+
+
+
+
+gradle -version
+mkdir GradleDemo
+cd GradleDemo
+gradle init
+
+
+Choose:
+
+Application
+Java
+Groovy DSL
+JUnit
+
+gradle build
+gradle run
