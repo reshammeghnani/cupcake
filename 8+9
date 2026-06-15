@@ -5,80 +5,49 @@ cd ..
 cd ..
 
 
-
-mvn archetype:generate -DgroupId=com.example -DartifactId=demo-project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-
+mvn archetype:generate -DgroupId=com.example -DartifactId=final-project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
 
-
-
-cd demo-project
-
+cd final-project
 
 
 (
-
 echo ^<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
 echo   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"^>
-
 echo   ^<modelVersion^>4.0.0^</modelVersion^>
-
 echo   ^<groupId^>com.example^</groupId^>
-
-echo   ^<artifactId^>demo-project^</artifactId^>
-
+echo   ^<artifactId^>final-project^</artifactId^>
 echo   ^<packaging^>jar^</packaging^>
-
 echo   ^<version^>1.0-SNAPSHOT^</version^>
-
-echo   ^<name^>demo-project^</name^>
-
+echo   ^<name^>final-project^</name^>
 echo   ^<url^>http://maven.apache.org^</url^>
-
 echo   ^<dependencies^>
-
 echo     ^<dependency^>
-
 echo       ^<groupId^>junit^</groupId^>
-
 echo       ^<artifactId^>junit^</artifactId^>
-
 echo       ^<version^>3.8.1^</version^>
-
 echo       ^<scope^>test^</scope^>
-
 echo     ^</dependency^>
-
 echo     ^<dependency^>
-
 echo       ^<groupId^>com.google.code.gson^</groupId^>
-
 echo       ^<artifactId^>gson^</artifactId^>
-
 echo       ^<version^>2.10.1^</version^>
-
 echo     ^</dependency^>
-
 echo   ^</dependencies^>
-
 echo ^</project^>
-
 ) > pom.xml
-
 
 
 mvn compile
 
-mvn test  
+mvn test
 
 mvn package
 
 
+java -cp target/final-project-1.0-SNAPSHOT.jar com.example.App
 
-java -cp target/demo-project-1.0-SNAPSHOT.jar com.example.App
-
-
+type src\main\java\com\example\App.java(change here)
 
 
 
@@ -108,68 +77,45 @@ java --version
 cd ..
 cd ..
 cd ..
-cd demo-project
+cd final-project
+
 del pom.xml
 
 (
-
 echo plugins ^{
-
 echo     id 'java'
-
 echo ^}
-
 echo.
-
 echo group = 'com.example'
-
 echo version = '1.0-SNAPSHOT'
-
 echo.
-
 echo repositories ^{
-
 echo     mavenCentral^(^)
-
 echo ^}
-
 echo.
-
 echo dependencies ^{
-
 echo     testImplementation 'junit:junit:4.13.2'
-
 echo ^}
-
 echo.
-
 echo java ^{
-
-echo     sourceCompatibility = JavaVersion.VERSION_25 
-
-echo     targetCompatibility = JavaVersion.VERSION_25
-
+echo     sourceCompatibility = JavaVersion.VERSION_21
+echo     targetCompatibility = JavaVersion.VERSION_21
 echo ^}
-
 echo.
-
 echo test ^{
-
 echo     useJUnit^(^)
-
 echo ^}
-
 ) > build.gradle
 
 (
-
-echo rootProject.name = 'demo-project'
-
+echo rootProject.name = 'final-project'
 ) > settings.gradle
 
 type build.gradle
 echo.
 type settings.gradle
+
 gradle build
 gradle test
- java -cp build/libs/demo-project-1.0-SNAPSHOT.jar com.example.App
+
+java -cp build/libs/final-project-1.0-SNAPSHOT.jar com.example.App
